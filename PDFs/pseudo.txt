@@ -1,0 +1,24 @@
+1. Build empty page table (PageTable)
+
+2. Read one memory address from trace file
+
+3. Traverse tree to see if vpn -> pfn mapping info exists 
+   with findVpn2Pfnmapping()
+
+4a. If mapping info is found (true):
+    - PageTable Hit
+    - Update or insert page recent access memory for Replacement (WSClock)
+
+4b. If mapping info is not found (false):
+    a. Add mapping information for the vpn -> pfn
+    b. If WSClock still has free entries, map to next free index
+    c. If all entries of WSClock are taken, run page replacement
+        - Update mapping of replaced WSClockEntry vpn -> pfn in page table
+          to invalid.
+
+5. Print appropriate logging from command line input to console
+
+6. Go back to Step 2, repeat until all addresses have been read
+
+    
+    
